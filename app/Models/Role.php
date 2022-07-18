@@ -16,14 +16,15 @@ class Role extends Model
     protected $fillable = [
         'name',
         'description',
+        'status',
     ];
 
     /**
      * Relation->many to one (∞:1) with Role to User
      * role belongs to the user and user can have only one role
      */
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
 }

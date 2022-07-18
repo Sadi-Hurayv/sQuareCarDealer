@@ -32,8 +32,26 @@
                         <label for="description" class="col-md-4 col-form-label fw-bold">Description</label>
 
                         <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" autocomplete="description" autofocus cols="30" rows="5"></textarea>
+                        
 
                         @error('description')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+
+                    <!-- Status -->
+                    <div class="form-group row">
+                        <label for="status" class="col-md-4 col-form-label fw-bold">Status</label>
+
+                        <select id="status" class="form-control @error('status') is-invalid @enderror" name="status" value="{{ old('status') }}" autocomplete="status" autofocus cols="30" rows="5">
+                            <option selected disabled>Select Status</option>
+                            <option value=1>Active</option>
+                            <option value=2>Deactive</option>
+                        </select>
+
+                        @error('status')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

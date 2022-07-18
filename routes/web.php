@@ -24,5 +24,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/role/create', [App\Http\Controllers\RolesController::class, 'create']);
 Route::post('/role', [App\Http\Controllers\RolesController::class, 'store']);
+Route::get('/role', [App\Http\Controllers\RolesController::class, 'index']);
 
 

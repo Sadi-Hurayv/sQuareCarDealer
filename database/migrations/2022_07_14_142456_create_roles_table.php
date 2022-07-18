@@ -15,12 +15,10 @@ return new class extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->text('description')->nullable();
+            $table->Integer('status');
             $table->timestamps();
-
-            $table->index('user_id');
         });
     }
 

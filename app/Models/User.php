@@ -46,8 +46,8 @@ class User extends Authenticatable
      * Relation-> one to one (1:1) with User to Role
      * user can have only one role
      */
-    public function role()
-    {
-        return $this->hasOne(Role::class);
-    }
+    // public function role()
+    // {
+    //     return $this->hasOne(Role::class);
+    // }
 }

@@ -2,21 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use Illuminate\Http\Request;
-use App\Models\User;
 
 class RolesController extends Controller
 {
-    //
-    public function __construct()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        return $this->middleware('auth');
+        $roles=Role::all();
+        return view('roles.index', compact('roles'));
     }
 
     /**
-     * Create Role.
-     * 
-     * @return 'roles.create'
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -24,23 +29,65 @@ class RolesController extends Controller
     }
 
     /**
-     * Store Role.
-     * post-data(name, description) from a form from roles.create 
-     * 
-     * @return 
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store()//store(Request  $request)
     {
         $data = request()->validate([
-            'caption' => 'required',
+            'name' => 'required',
             'description' => '',
+            'status' => 'required',
         ]);
-
-        role()->create([
-            'caption' => $data['caption'],
-            'description' => $data['description'],
-        ]); //Entry the data to the database
-
+        //dd($data);
+        Role::create($data);
         return redirect('home');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Role  $role
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Role $role)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Role  $role
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Role $role)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Role  $role
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Role $role)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Role  $role
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Role $role)
+    {
+        //
     }
 }
