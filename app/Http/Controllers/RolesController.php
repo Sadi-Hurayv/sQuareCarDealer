@@ -14,7 +14,8 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $roles=Role::all();
+        // $roles=Role::all();
+        $roles=Role::paginate(10);
         return view('roles.index', compact('roles'));
     }
 
@@ -43,7 +44,7 @@ class RolesController extends Controller
         ]);
         //dd($data);
         Role::create($data);
-        return redirect('home');
+        return redirect('role');
     }
 
     /**
