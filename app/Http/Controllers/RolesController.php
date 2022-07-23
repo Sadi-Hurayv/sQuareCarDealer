@@ -66,7 +66,7 @@ class RolesController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return view('roles.edit', compact('role'));
     }
 
     /**
@@ -78,7 +78,14 @@ class RolesController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $data= request()->validate([
+            'name' => 'required',
+            'description' => '',
+            'status' => 'required',
+        ]);
+        //dd($request);
+        Role::where('id', $role->id)->update($data);
+        return redirect('role');
     }
 
     /**
@@ -89,6 +96,8 @@ class RolesController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        // dd($role);
+        Role::where('id', $role->id)->delete();
+        return redirect('role');
     }
 }
