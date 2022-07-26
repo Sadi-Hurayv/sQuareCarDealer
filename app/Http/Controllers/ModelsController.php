@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Role;
+use App\Models\Model;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class ModelsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users=User::paginate(10);
-        return view('users.index', compact('users'));
+        //
     }
 
     /**
@@ -26,8 +24,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $roles=Role::all();
-        return view('users.create', compact('roles'));
+        //
     }
 
     /**
@@ -44,10 +41,10 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Model  $model
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Model $model)
     {
         //
     }
@@ -55,23 +52,22 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Model  $model
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Model $model)
     {
-        $roles=Role::all();
-        return view('users.edit', compact('user', 'roles'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Model  $model
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Model $model)
     {
         //
     }
@@ -79,10 +75,10 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Model  $model
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Model $model)
     {
         //
     }

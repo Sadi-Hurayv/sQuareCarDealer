@@ -6,8 +6,8 @@
     <div class="card">
 
         <div class="card-header">
-            <h2 class="fw-bold">Role Management</h2>
-            <p>Here you can manage your site users roles and privileges.</p>
+            <h2 class="fw-bold">User Management</h2>
+            <p>Here you can view and manage your site users.</p>
         </div>
 
         <div class="card-body">
@@ -16,38 +16,36 @@
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-1"></div>
-                        <div class="col-1 fw-bold">Name</div>
-                        <div class="col-6 fw-bold">Description</div>
+                        <div class="col-2 fw-bold">Role</div>
+                        <div class="col-2 fw-bold">Name</div>
+                        <div class="col-3 fw-bold">Email</div>
                         <div class="col-1 fw-bold">Status</div>
                         <div class="col-2 fw-bold text-center">Action</div>
                         <div class="col-1"></div>
                     </div>
                 </li>
 
-                @foreach($roles as $role)
+                @foreach($users as $user)
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-1"></div>
-                        <div class="col-1">{{$role->name}}</div>
-                        <div class="col-6">{{$role->description}}</div>
+                        <div class="col-2">Role</div>
+                        <div class="col-2">{{$user->name}}</div>
+                        <div class="col-3">{{$user->email}}</div>
                         <div class="col-1">
-                            @if($role->status==1)
-                            Active
-                            @else
-                            Deactive
-                            @endif
+                            status
                         </div>
                         <div class="col-2">
                             <div class="d-flex justify-content-center align-items-center">
 
-                                <a class="link-dark p-1" href="#"><i class="bi bi-shield-lock p-1 border border-2 border-primary rounded" style="color: blue;"></i></a>
+                                <a class="link-dark p-1" href="#"><i class="bi bi-eye p-1 border border-2 border-primary rounded" style="color: blue;"></i></a> <!-- to show/view sigle user profile -->
 
-                                <a class="link-dark p-1" href="/role/{{$role->id}}/edit"><i class="bi bi-pencil p-1 border border-2 border-success rounded" style="color: green;"></i></a>
+                                <a class="link-dark p-1" href="/users/{{$user->id}}/edit"><i class="bi bi-pencil p-1 border border-2 border-success rounded" style="color: green;"></i></a>
 
-                                <form id="delete-role-{{ $role->id }}" class="hidden " action="/role/{{ $role->id }}" method="post">
+                                <form id="delete-user-{{ $user->id }}" class="hidden " action="/users/{{ $user->id }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <a class="link-dark p-1" href="javascript:void(0);" onclick="document.getElementById('delete-role-{{ $role->id }}').submit();"><i class="bi bi-trash p-1 border border-2 border-danger rounded" style="color: red;"></i></a>
+                                    <a class="link-dark p-1" href="javascript:void(0);" onclick="document.getElementById('delete-user-{{ $user->id }}').submit();"><i class="bi bi-trash p-1 border border-2 border-danger rounded" style="color: red;"></i></a>
                                 </form>
 
                             </div>
@@ -58,7 +56,7 @@
                 @endforeach
                 <div class="row">
                     <div class="col-12 justify-content-center">
-                        {{$roles->links('pagination::bootstrap-5')}}
+                        {{$users->links('pagination::bootstrap-5')}}
                     </div>
                 </div>
 

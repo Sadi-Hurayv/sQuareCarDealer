@@ -44,7 +44,7 @@ class RolesController extends Controller
         ]);
         //dd($data);
         Role::create($data);
-        return redirect('role');
+        return redirect('roles');
     }
 
     /**
@@ -85,7 +85,7 @@ class RolesController extends Controller
         ]);
         //dd($request);
         Role::where('id', $role->id)->update($data);
-        return redirect('role');
+        return redirect('roles');
     }
 
     /**
@@ -98,6 +98,6 @@ class RolesController extends Controller
     {
         // dd($role);
         Role::where('id', $role->id)->delete();
-        return redirect('role');
+        return redirect('roles');
     }
 }
