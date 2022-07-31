@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\Brand;
+use App\Models\Model;
 use Illuminate\Http\Request;
 
 class CarsController extends Controller
@@ -14,7 +16,8 @@ class CarsController extends Controller
      */
     public function index()
     {
-        //
+        $cars=Car::paginate(10);
+        return view('cars.index', compact('cars'));
     }
 
     /**
@@ -24,7 +27,9 @@ class CarsController extends Controller
      */
     public function create()
     {
-        //
+        $brands=Brand::all();
+        $models=Model::all();
+        return view('cars.create', compact('brands', 'models'));
     }
 
     /**
@@ -35,7 +40,22 @@ class CarsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'brand' => 'required',
+            'model' => 'required',
+            'description' => '',
+            'status' => 'required',
+        ]);
+        $creator=auth()->user()->user_id;
+        //dd($data);
+        Car::create(array_merge(
+            $data,
+            [
+                'creator_user_id' => $creator,
+                'last_updater_user_id' => $creator
+            ]
+        ));
+        return redirect('cars');
     }
 
     /**
@@ -57,7 +77,9 @@ class CarsController extends Controller
      */
     public function edit(Car $car)
     {
-        //
+        $brands=Brand::all();
+        $models=Model::all();
+        return view('cars.edit', compact('car', 'brands', 'models'));
     }
 
     /**

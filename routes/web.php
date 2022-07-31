@@ -36,4 +36,23 @@ Route::get('/users/{user}/edit', [App\Http\Controllers\UsersController::class, '
 Route::patch('/users/{user}', [App\Http\Controllers\UsersController::class, 'update']);
 Route::delete('/users/{user}', [App\Http\Controllers\UsersController::class, 'destroy']);
 
+Route::get('/brands/create', [App\Http\Controllers\BrandsController::class, 'create']);
+Route::post('/brands', [App\Http\Controllers\BrandsController::class, 'store']);
+Route::get('/brands', [App\Http\Controllers\BrandsController::class, 'index']);
+Route::get('/brands/{brand}/edit', [App\Http\Controllers\BrandsController::class, 'edit']);
+Route::patch('/brands/{brand}', [App\Http\Controllers\BrandsController::class, 'update']);
+Route::delete('/brands/{brand}', [App\Http\Controllers\BrandsController::class, 'destroy']);
 
+Route::get('/models/create', [App\Http\Controllers\ModelsController::class, 'create']);
+Route::post('/models', [App\Http\Controllers\ModelsController::class, 'store']);
+Route::get('/models', [App\Http\Controllers\ModelsController::class, 'index']);
+Route::get('/models/{model}/edit', [App\Http\Controllers\ModelsController::class, 'edit']);
+Route::patch('/models/{model}', [App\Http\Controllers\ModelsController::class, 'update']);
+Route::delete('/models/{model}', [App\Http\Controllers\ModelsController::class, 'destroy']);
+
+Route::get('/cars/create', [App\Http\Controllers\CarsController::class, 'create']);
+Route::post('/cars', [App\Http\Controllers\CarsController::class, 'store']);
+Route::get('/cars', [App\Http\Controllers\CarsController::class, 'index']);
+Route::get('/cars/{car}/edit', [App\Http\Controllers\CarsController::class, 'edit']);
+Route::patch('/cars/{car}', [App\Http\Controllers\CarsController::class, 'update']);
+Route::delete('/cars/{car}', [App\Http\Controllers\CarsController::class, 'destroy']);

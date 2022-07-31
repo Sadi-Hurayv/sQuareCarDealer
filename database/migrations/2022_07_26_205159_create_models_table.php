@@ -17,7 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->Integer('status');
+            $table->unsignedBigInteger('brand_id');
+            $table->integer('status');
+
+            $table->foreign('brand_id')->references('id')->on('brands');
+
             $table->timestamps();
         });
     }

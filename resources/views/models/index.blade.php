@@ -6,8 +6,8 @@
     <div class="card">
 
         <div class="card-header">
-            <h2 class="fw-bold">Role Management</h2>
-            <p>Here you can manage your site users roles and privileges.</p>
+            <h2 class="fw-bold">Model Management</h2>
+            <p>Here you can manage the models of car.</p>
         </div>
 
         <div class="card-body">
@@ -24,14 +24,14 @@
                     </div>
                 </li>
 
-                @foreach($roles as $role)
+                @foreach($models as $model)
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-1"></div>
-                        <div class="col-1">{{$role->name}}</div>
-                        <div class="col-6">{{$role->description}}</div>
+                        <div class="col-1">{{$model->name}}</div>
+                        <div class="col-6">{{$model->description}}</div>
                         <div class="col-1">
-                            @if($role->status==1)
+                            @if($model->status==1)
                             Active
                             @else
                             Deactive
@@ -40,14 +40,14 @@
                         <div class="col-2">
                             <div class="d-flex justify-content-center align-items-center">
 
-                                <a class="link-dark p-1" href="#"><i class="bi bi-shield-lock p-1 border border-2 border-primary rounded" style="color: blue;"></i></a>
+                                <a class="link-dark p-1" href="#"><i class="bi bi-eye p-1 border border-2 border-primary rounded" style="color: blue;"></i></a>
 
-                                <a class="link-dark p-1" href="/roles/{{$role->id}}/edit"><i class="bi bi-pencil p-1 border border-2 border-success rounded" style="color: green;"></i></a>
+                                <a class="link-dark p-1" href="/models/{{$model->id}}/edit"><i class="bi bi-pencil p-1 border border-2 border-success rounded" style="color: green;"></i></a>
 
-                                <form id="delete-role-{{ $role->id }}" class="hidden " action="/roles/{{ $role->id }}" method="post">
+                                <form id="delete-model-{{ $model->id }}" class="hidden " action="/models/{{ $model->id }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <a class="link-dark p-1" href="javascript:void(0);" onclick="document.getElementById('delete-role-{{ $role->id }}').submit();"><i class="bi bi-trash p-1 border border-2 border-danger rounded" style="color: red;"></i></a>
+                                    <a class="link-dark p-1" href="javascript:void(0);" onclick="document.getElementById('delete-model-{{ $model->id }}').submit();"><i class="bi bi-trash p-1 border border-2 border-danger rounded" style="color: red;"></i></a>
                                 </form>
 
                             </div>
@@ -58,7 +58,7 @@
                 @endforeach
                 <div class="row">
                     <div class="col-12 justify-content-center">
-                        {{$roles->links('pagination::bootstrap-5')}}
+                        {{$models->links('pagination::bootstrap-5')}}
                     </div>
                 </div>
 

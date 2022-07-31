@@ -14,7 +14,8 @@ class BrandsController extends Controller
      */
     public function index()
     {
-        //
+        $brands=Brand::paginate(10);
+        return view('brands.index', compact('brands'));
     }
 
     /**
@@ -24,7 +25,7 @@ class BrandsController extends Controller
      */
     public function create()
     {
-        //
+        return view('brands.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class BrandsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'name' => 'required',
+            'description' => '',
+            'status' => 'required',
+        ]);
+        Brand::create($data);
+        return redirect('brands');
     }
 
     /**
@@ -57,7 +64,7 @@ class BrandsController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        return view('brands.edit', compact('brand'));
     }
 
     /**
@@ -69,7 +76,13 @@ class BrandsController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        //
+        $data = request()->validate([
+            'name' => 'required',
+            'description' => '',
+            'status' => 'required',
+        ]);
+        Brand::where('id', $brand->id)->update($data);
+        return redirect('brands');
     }
 
     /**
@@ -80,6 +93,7 @@ class BrandsController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        Brand::where('id', $brand->id)->delete();
+        return redirect('brands');
     }
 }

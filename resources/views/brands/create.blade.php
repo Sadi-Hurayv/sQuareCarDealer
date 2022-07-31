@@ -8,12 +8,12 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="fw-bold">Register Role</h2>
-                    <p>Here you can register a new role.</p>
+                    <h2 class="fw-bold">Register Brand</h2>
+                    <p>Here you can register a new brand.</p>
                 </div>
 
                 <div class="card-body">
-                    <form action="/roles" method="post">
+                    <form action="/brands" method="post">
                         @csrf
                         <!-- Name -->
                         <div class="form-group row px-3">

@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 class Model extends Eloquent
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     */
+    //protected $guarded = [];
+    protected $fillable = [
+        'name',
+        'description',
+        'status',
+    ];
 }

@@ -8,20 +8,43 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="fw-bold">Register Role</h2>
-                    <p>Here you can register a new role.</p>
+                    <h2 class="fw-bold">Register Car</h2>
+                    <p>Here you can register a new car.</p>
                 </div>
 
                 <div class="card-body">
-                    <form action="/roles" method="post">
+                    <form action="/cars" method="post">
                         @csrf
-                        <!-- Name -->
+                        <!-- Brand -->
                         <div class="form-group row px-3">
-                            <label for="name" class="col-md-4 col-form-label fw-bold">Name</label>
+                            <label for="brand" class="col-md-4 col-form-label fw-bold">Brand</label>
 
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                            <select id="brand" class="form-control @error('brand') is-invalid @enderror" name="brand" value="{{ old('brand') }}" required autocomplete="brand" autofocus cols="30" rows="5">
+                                <option selected disabled>Select Brand</option>
+                                @foreach($brands as $brand)
+                                <option value={{ $brand->id }}>{{ $brand->name }}</option>
+                                @endforeach
+                            </select>
 
-                            @error('name')
+                            @error('brand')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <!-- Model -->
+                        <div class="form-group row px-3">
+                            <label for="model" class="col-md-4 col-form-label fw-bold">Model</label>
+
+                            <select id="model" class="form-control @error('model') is-invalid @enderror" name="model" value="{{ old('model') }}" required autocomplete="model" autofocus cols="30" rows="5">
+                                <option selected disabled>Select Model</option>
+                                @foreach($models as $model)
+                                <option value={{ $model->id }}>{{ $model->name }}</option>
+                                @endforeach
+                            </select>
+
+                            @error('model')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

@@ -8,19 +8,19 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="fw-bold">Edit Role</h2>
-                    <p>Here you can edit the attributes of a role.</p>
+                    <h2 class="fw-bold">Edit Brand</h2>
+                    <p>Here you can edit the attributes of a car brand.</p>
                 </div>
 
                 <div class="card-body">
-                    <form action="/roles/{{ $role->id }}" method="post">
+                    <form action="/brands/{{ $brand->id }}" method="post">
                         @csrf
                         @method('PATCH')
                         <!-- Name -->
                         <div class="form-group row px-3">
                             <label for="name" class="col-md-4 col-form-label fw-bold">Name</label>
 
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') ?? $role->name}}" required autocomplete="name" autofocus>
+                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') ?? $brand->name}}" required autocomplete="name" autofocus>
 
                             @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -33,7 +33,7 @@
                         <div class="form-group row px-3">
                             <label for="description" class="col-md-4 col-form-label fw-bold">Description</label>
 
-                            <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" autocomplete="description" autofocus cols="30" rows="3">{{$role->description}}</textarea>
+                            <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" autocomplete="description" autofocus cols="30" rows="3">{{$brand->description}}</textarea>
 
 
                             @error('description')
@@ -49,10 +49,10 @@
 
                             <select id="status" class="form-control @error('status') is-invalid @enderror" name="status" value="{{ old('status') }}" required autocomplete="status" autofocus>
                                 <option disabled>Select Status</option>
-                                <option @if($role->status==1)
+                                <option @if($brand->status==1)
                                     selected
                                     @endif value=1>Active</option>
-                                <option @if($role->status==2)
+                                <option @if($brand->status==2)
                                     selected
                                     @endif value=2>Deactive</option>
                             </select>

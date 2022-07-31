@@ -15,9 +15,25 @@ return new class extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->Integer('status');
+            $table->string('category');
+            $table->unsignedBigInteger('brand_id');
+            $table->unsignedBigInteger('model_id');
+            $table->integer('model_year');
+            $table->unsignedBigInteger('horse_power');
+            $table->unsignedBigInteger('torque');
+            $table->unsignedBigInteger('odometer');
+            $table->double('engine_capacity');
+            $table->double('price');
+            $table->integer('status');
+            
+            $table->unsignedBigInteger('creator_user_id');
+            $table->unsignedBigInteger('last_updater_user_id');
+            
+            $table->foreign('brand_id')->references('id')->on('brands');
+            $table->foreign('model_id')->references('id')->on('models');
+            $table->foreign('creator_user_id')->references('id')->on('users');
+            $table->foreign('last_updater_user_id')->references('id')->on('users');
+
             $table->timestamps();
         });
     }

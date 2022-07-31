@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Brand extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     */
+    //protected $guarded = [];
+    protected $fillable = [
+        'name',
+        'description',
+        'status',
+    ];
 }

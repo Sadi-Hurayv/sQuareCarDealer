@@ -14,7 +14,8 @@ class ModelsController extends Controller
      */
     public function index()
     {
-        //
+        $models=Model::paginate(10);
+        return view('models.index', compact('models'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ModelsController extends Controller
      */
     public function create()
     {
-        //
+        return view('models.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class ModelsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'name' => 'required',
+            'description' => '',
+            'status' => 'required',
+        ]);
+        Model::create($data);
+        return redirect('models');
     }
 
     /**
@@ -57,7 +64,7 @@ class ModelsController extends Controller
      */
     public function edit(Model $model)
     {
-        //
+        return view('models.edit', compact('model'));
     }
 
     /**
@@ -69,7 +76,13 @@ class ModelsController extends Controller
      */
     public function update(Request $request, Model $model)
     {
-        //
+        $data = request()->validate([
+            'name' => 'required',
+            'description' => '',
+            'status' => 'required',
+        ]);
+        Model::where('id', $model->id)->update($data);
+        return redirect('models');
     }
 
     /**
@@ -80,6 +93,7 @@ class ModelsController extends Controller
      */
     public function destroy(Model $model)
     {
-        //
+        Model::where('id', $model->id)->delete();
+        return redirect('models');
     }
 }

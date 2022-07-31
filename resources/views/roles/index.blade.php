@@ -24,7 +24,7 @@
                     </div>
                 </li>
 
-                @foreach($roles as $role)
+                @foreach($roles as $key =>  $role)
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-1"></div>
