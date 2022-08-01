@@ -21,10 +21,10 @@ class Role extends Model
 
     /**
      * Relation->many to one (∞:1) with Role to User
-     * role belongs to the user and user can have only one role
+     * Role belongs to the User and User can have only one role
      */
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
 }

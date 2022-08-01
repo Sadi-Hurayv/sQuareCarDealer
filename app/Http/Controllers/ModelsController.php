@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Model;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
 class ModelsController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,7 @@ class ModelsController extends Controller
      */
     public function index()
     {
-        $models=Model::paginate(10);
+        $models=Model::paginate(5);
         return view('models.index', compact('models'));
     }
 
@@ -25,7 +31,8 @@ class ModelsController extends Controller
      */
     public function create()
     {
-        return view('models.create');
+        $brands=Brand::all();
+        return view('models.create', compact('brands'));
     }
 
     /**
@@ -36,11 +43,20 @@ class ModelsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = request()->validate([
+        request()->validate([
             'name' => 'required',
             'description' => '',
+            'brand' => 'required',
             'status' => 'required',
         ]);
+
+        $data=[
+            'name' => $request->name,
+            'description' => $request->description,
+            'status' => $request->status,
+            'brand_id' => $request->brand,
+        ];
+
         Model::create($data);
         return redirect('models');
     }
@@ -64,7 +80,8 @@ class ModelsController extends Controller
      */
     public function edit(Model $model)
     {
-        return view('models.edit', compact('model'));
+        $brands=Brand::all();
+        return view('models.edit', compact('model', 'brands'));
     }
 
     /**

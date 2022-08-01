@@ -19,8 +19,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
+        'role_id',
+        'status',
     ];
 
     /**
@@ -43,11 +46,11 @@ class User extends Authenticatable
     ];
 
     /**
-     * Relation-> one to one (1:1) with User to Role
-     * user can have only one role
+     * Relation-> one to many (1:∞) with Role to User
+     * User can have only one Role
      */
-    // public function role()
-    // {
-    //     return $this->hasOne(Role::class);
-    // }
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }

@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="/users" method="post">
+                    <form action="/users/{{ $user->id }}" method="post">
                         @csrf
                         @method('PATCH')
 
@@ -20,9 +20,23 @@
                             <label for="name" class="col-md-4 col-form-label text-md-end">Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus>
 
                                 @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="username" class="col-md-4 col-form-label text-md-end">Username</label>
+
+                            <div class="col-md-6">
+                                <input id="username" type="text" class="form-control @error('name') is-invalid @enderror" name="username" value="{{ $user->username }}" disabled autocomplete="name" autofocus>
+
+                                @error('username')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -34,7 +48,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-end">Email Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email">
 
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -49,9 +63,9 @@
 
                             <div class="col-md-6">
                                 <select id="status" class="form-control @error('status') is-invalid @enderror" name="status" value="{{ old('status') }}" required autocomplete="status" autofocus>
-                                    <option selected disabled>Select Status</option>
-                                    <option value=1>Active</option>
-                                    <option value=2>Deactive</option>
+                                    <option disabled>Select Status</option>
+                                    <option @if($user->status==1) selected @endif value=1>Active</option>
+                                    <option @if($user->status==2) selected @endif value=2>Deactive</option>
                                 </select>
 
                                 @error('status')
@@ -67,10 +81,12 @@
                             <label for="role" class="col-md-4 col-form-label text-md-end">Role</label>
 
                             <div class="col-md-6">
-                                <select id="role" class="form-control @error('role') is-invalid @enderror" name="role" value="{{ old('role') }}" required autocomplete="role" autofocus>
+                                <select id="role" class="form-control @error('role') is-invalid @enderror" name="role" required autocomplete="role" autofocus>
                                     <option selected disabled>Select Role</option>
                                     @foreach($roles as $role)
-                                        <option value={{ $role->id }}>{{ $role->name }}</option>
+                                    <option @if($role->id == $user->role_id) selected @endif value={{ $role->id }}>
+                                        {{ $role->name }}
+                                    </option>
                                     @endforeach
                                 </select>
 

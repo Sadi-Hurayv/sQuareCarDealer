@@ -15,9 +15,27 @@
                 <div class="card-body">
                     <form action="/models" method="post">
                         @csrf
+                        <!-- Brand -->
+                        <div class="form-group row px-3">
+                            <label for="brand" class="col-md-4 col-form-label fw-bold">Brand</label>
+
+                            <select id="brand" class="form-control @error('brand') is-invalid @enderror" name="brand" value="{{ old('brand') }}" required autofocus>
+                                <option selected disabled>Select Brand</option>
+                                @foreach($brands as $brand)
+                                <option value={{ $brand->id }}>{{ $brand->name }}</option>
+                                @endforeach
+                            </select>
+
+                            @error('brand')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
                         <!-- Name -->
                         <div class="form-group row px-3">
-                            <label for="name" class="col-md-4 col-form-label fw-bold">Name</label>
+                            <label for="name" class="col-md-4 col-form-label fw-bold">Model Name</label>
 
                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
@@ -46,7 +64,7 @@
                         <div class="form-group row px-3">
                             <label for="status" class="col-md-4 col-form-label fw-bold">Status</label>
 
-                            <select id="status" class="form-control @error('status') is-invalid @enderror" name="status" value="{{ old('status') }}" required autocomplete="status" autofocus cols="30" rows="5">
+                            <select id="status" class="form-control @error('status') is-invalid @enderror" name="status" value="{{ old('status') }}" required autofocus>
                                 <option selected disabled>Select Status</option>
                                 <option value=1>Active</option>
                                 <option value=2>Deactive</option>

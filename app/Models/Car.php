@@ -15,9 +15,17 @@ class Car extends Model
      */
     //protected $guarded = [];
     protected $fillable = [
-        'brand',
-        'model',
-        'description',
+        'category',
+        'brand_id',
+        'model_id',
+        'model_year',
+        'engine_capacity',
+        'horse_power',
+        'torque',
+        'odometer',
+        'price',
         'status',
+        'creator_user_id',
+        'last_updater_user_id',
     ];
 }

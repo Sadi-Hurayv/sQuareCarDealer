@@ -5,9 +5,14 @@
 
     <div class="card">
 
-        <div class="card-header">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div>
             <h2 class="fw-bold">Brand Management</h2>
             <p>Here you can manage the brands of car.</p>
+            </div>
+            <div class="">
+                <a class="btn btn-primary link-dark p-1" href="/brands/create"><i class="bi bi-patch-plus px-2" style="font-size: 2rem; color: white;"></i></a>
+            </div>
         </div>
 
         <div class="card-body">
@@ -28,17 +33,17 @@
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-1"></div>
-                        <div class="col-1">{{$brand->name}}</div>
-                        <div class="col-6">{{$brand->description}}</div>
-                        <div class="col-1">
+                        <div class="col-1 d-flex align-items-center">{{$brand->name}}</div>
+                        <div class="col-6" align="justify">{{$brand->description}}</div>
+                        <div class="col-1 d-flex align-items-center">
                             @if($brand->status==1)
                             Active
                             @else
                             Deactive
                             @endif
                         </div>
-                        <div class="col-2">
-                            <div class="d-flex justify-content-center align-items-center">
+                        <div class="col-2 d-flex justify-content-center align-items-center">
+                            <div class="d-flex align-items-center">
 
                                 <a class="link-dark p-1" href="#"><i class="bi bi-eye p-1 border border-2 border-primary rounded" style="color: blue;"></i></a>
 

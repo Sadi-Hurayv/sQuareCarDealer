@@ -5,9 +5,14 @@
 
     <div class="card">
 
-        <div class="card-header">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div>
             <h2 class="fw-bold">Role Management</h2>
             <p>Here you can manage your site users roles and privileges.</p>
+            </div>
+            <div class="">
+                <a class="btn btn-primary link-dark p-1" href="/roles/create"><i class="bi bi-patch-plus px-2" style="font-size: 2rem; color: white;"></i></a>
+            </div>
         </div>
 
         <div class="card-body">

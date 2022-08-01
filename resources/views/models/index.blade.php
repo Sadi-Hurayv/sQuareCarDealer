@@ -5,9 +5,14 @@
 
     <div class="card">
 
-        <div class="card-header">
-            <h2 class="fw-bold">Model Management</h2>
-            <p>Here you can manage the models of car.</p>
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div>
+                <h2 class="fw-bold">Model Management</h2>
+                <p>Here you can manage the models of car.</p>
+            </div>
+            <div class="">
+                <a class="btn btn-primary link-dark p-1" href="/models/create"><i class="bi bi-patch-plus px-2" style="font-size: 2rem; color: white;"></i></a>
+            </div>
         </div>
 
         <div class="card-body">
@@ -16,8 +21,9 @@
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-1"></div>
-                        <div class="col-1 fw-bold">Name</div>
-                        <div class="col-6 fw-bold">Description</div>
+                        <div class="col-1 fw-bold">Brand</div>
+                        <div class="col-1 fw-bold">Model</div>
+                        <div class="col-5 fw-bold">Description</div>
                         <div class="col-1 fw-bold">Status</div>
                         <div class="col-2 fw-bold text-center">Action</div>
                         <div class="col-1"></div>
@@ -28,17 +34,18 @@
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-1"></div>
-                        <div class="col-1">{{$model->name}}</div>
-                        <div class="col-6">{{$model->description}}</div>
-                        <div class="col-1">
+                        <div class="col-1 d-flex align-items-center">{{$model->brand->name}}</div>
+                        <div class="col-1 d-flex align-items-center">{{$model->name}}</div>
+                        <div class="col-5" align="justify">{{$model->description}}</div>
+                        <div class="col-1 d-flex align-items-center">
                             @if($model->status==1)
                             Active
                             @else
                             Deactive
                             @endif
                         </div>
-                        <div class="col-2">
-                            <div class="d-flex justify-content-center align-items-center">
+                        <div class="col-2 d-flex justify-content-center align-items-center">
+                            <div class="d-flex align-items-center">
 
                                 <a class="link-dark p-1" href="#"><i class="bi bi-eye p-1 border border-2 border-primary rounded" style="color: blue;"></i></a>
 

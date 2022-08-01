@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users=User::paginate(10);
+        $users = User::paginate(10);
         return view('users.index', compact('users'));
     }
 
@@ -26,7 +32,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $roles=Role::all();
+        $roles = Role::all();
         return view('users.create', compact('roles'));
     }
 
@@ -38,7 +44,27 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'name' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'status' => 'required',
+            'role' => 'required',
+        ]);
+
+        $data = [
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'status' => $request->status,
+            'role_id' => $request->role,
+        ];
+
+        // dd($data);
+        User::create($data);
+        return redirect('users');
     }
 
     /**
@@ -60,7 +86,7 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        $roles=Role::all();
+        $roles = Role::all();
         return view('users.edit', compact('user', 'roles'));
     }
 
@@ -73,7 +99,22 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        request()->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'status' => 'required',
+            'role' => 'required',
+        ]);
+
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'status' => $request->status,
+            'role_id' => $request->role,
+        ];
+        // dd($data);
+        User::where('id', $user->id)->update($data);
+        return redirect('users');
     }
 
     /**

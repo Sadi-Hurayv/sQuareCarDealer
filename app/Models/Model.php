@@ -16,6 +16,17 @@ class Model extends Eloquent
     protected $fillable = [
         'name',
         'description',
+        'brand_id',
         'status',
     ];
+
+    /**
+     * Relation-> one to one (1:∞) with Brand to Model
+     * Model can have only one Brand
+     */
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
 }

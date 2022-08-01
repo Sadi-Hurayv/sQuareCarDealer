@@ -19,10 +19,10 @@ return new class extends Migration
             $table->unsignedBigInteger('brand_id');
             $table->unsignedBigInteger('model_id');
             $table->integer('model_year');
+            $table->double('engine_capacity');
             $table->unsignedBigInteger('horse_power');
             $table->unsignedBigInteger('torque');
             $table->unsignedBigInteger('odometer');
-            $table->double('engine_capacity');
             $table->double('price');
             $table->integer('status');
             

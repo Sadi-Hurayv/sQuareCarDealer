@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class CarsController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -40,21 +45,37 @@ class CarsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = request()->validate([
+        $validated = request()->validate([
+            'category' => 'required',
             'brand' => 'required',
             'model' => 'required',
-            'description' => '',
+            'model_year' => ['required', 'numeric'],
+            'engine_capacity' => ['required', 'numeric'],
+            'horse_power' => ['required', 'numeric'],
+            'torque' => ['required', 'numeric'],
+            'odometer' => ['required', 'numeric'],
+            'price' => ['required', 'numeric'],
             'status' => 'required',
         ]);
-        $creator=auth()->user()->user_id;
-        //dd($data);
-        Car::create(array_merge(
-            $data,
-            [
-                'creator_user_id' => $creator,
-                'last_updater_user_id' => $creator
-            ]
-        ));
+        $creator_id=auth()->user()->id;
+        
+        $data=[
+            'category' => $request->category,
+            'brand_id' => $request->brand,
+            'model_id' => $request->model,
+            'model_year' => $request->model_year,
+            'engine_capacity' => $request->engine_capacity,
+            'horse_power' => $request->horse_power,
+            'torque' => $request->torque,
+            'odometer' => $request->odometer,
+            'price' => $request->price,
+            'status' => $request->status,
+            'creator_user_id' => $creator_id,
+            'last_updater_user_id' => $creator_id,
+        ];
+
+        // dd($data);
+        Car::create($data);
         return redirect('cars');
     }
 

@@ -16,6 +16,26 @@
                     <form action="/models/{{ $model->id }}" method="post">
                         @csrf
                         @method('PATCH')
+                        <!-- Brand -->
+                        <div class="form-group row px-3">
+                            <label for="brand" class="col-md-4 col-form-label fw-bold">Brand</label>
+
+                            <select id="brand" class="form-control @error('brand') is-invalid @enderror" name="brand" value="{{ old('brand') }}" required autofocus>
+                                <option selected disabled>Select Brand</option>
+                                @foreach($brands as $brand)
+                                <option @if($brand->id==$model->brand_id) selected @endif value={{ $brand->id }}>
+                                    {{ $brand->name }}
+                                </option>
+                                @endforeach
+                            </select>
+
+                            @error('brand')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
                         <!-- Name -->
                         <div class="form-group row px-3">
                             <label for="name" class="col-md-4 col-form-label fw-bold">Name</label>

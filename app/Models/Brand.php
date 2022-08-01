@@ -18,4 +18,14 @@ class Brand extends Model
         'description',
         'status',
     ];
+
+    /**
+     * Relation->many to one (∞:1) with Brand to MOdel
+     * Model belongs to the Brand and Model can have only one Brand
+     */
+    public function model()
+    {
+        return $this->hasMany(Model::class);
+    }
+
 }
