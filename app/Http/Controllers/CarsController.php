@@ -58,6 +58,10 @@ class CarsController extends Controller
             'status' => 'required',
         ]);
         $creator_id=auth()->user()->id;
+
+        // $data = [
+        //     'category' => $validated['category'],
+        // ];
         
         $data=[
             'category' => $request->category,
@@ -112,7 +116,40 @@ class CarsController extends Controller
      */
     public function update(Request $request, Car $car)
     {
-        //
+        $validated = request()->validate([
+            'category' => 'required',
+            'brand' => 'required',
+            'model' => 'required',
+            'model_year' => ['required', 'numeric'],
+            'engine_capacity' => ['required', 'numeric'],
+            'horse_power' => ['required', 'numeric'],
+            'torque' => ['required', 'numeric'],
+            'odometer' => ['required', 'numeric'],
+            'price' => ['required', 'numeric'],
+            'status' => 'required',
+        ]);
+        $updater_id=auth()->user()->id;
+
+        // $data = [
+        //     'category' => $validated['category'],
+        // ];
+        
+        $data=[
+            'category' => $request->category,
+            'brand_id' => $request->brand,
+            'model_id' => $request->model,
+            'model_year' => $request->model_year,
+            'engine_capacity' => $request->engine_capacity,
+            'horse_power' => $request->horse_power,
+            'torque' => $request->torque,
+            'odometer' => $request->odometer,
+            'price' => $request->price,
+            'status' => $request->status,
+            'last_updater_user_id' => $updater_id,
+        ];
+
+        Car::where('id', $car->id)->update($data);
+        return redirect('cars');
     }
 
     /**
@@ -123,6 +160,7 @@ class CarsController extends Controller
      */
     public function destroy(Car $car)
     {
-        //
+        Car::where('id', $car->id)->delete();
+        return redirect('cars');
     }
 }

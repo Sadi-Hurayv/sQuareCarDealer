@@ -21,7 +21,7 @@ class Model extends Eloquent
     ];
 
     /**
-     * Relation-> one to one (1:∞) with Brand to Model
+     * Relation-> one to many (1:∞) with Brand to Model
      * Model can have only one Brand
      */
     public function brand()
@@ -29,4 +29,12 @@ class Model extends Eloquent
         return $this->belongsTo(Brand::class);
     }
 
+    /**
+     * Relation->many to one (∞:1) with Car to Model
+     * Car belongs to the Model and Car can have only one Model
+     */
+    public function cars()
+    {
+        return $this->hasMany(Car::class);
+    }
 }

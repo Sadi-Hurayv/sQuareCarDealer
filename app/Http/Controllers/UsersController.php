@@ -125,6 +125,7 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        User::where('id', $user->id)->delete();
+        return redirect('users');
     }
 }

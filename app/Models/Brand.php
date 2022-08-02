@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class Brand extends Model
 {
@@ -20,12 +20,21 @@ class Brand extends Model
     ];
 
     /**
-     * Relation->many to one (∞:1) with Brand to MOdel
+     * Relation->many to one (∞:1) with Model to Brand
      * Model belongs to the Brand and Model can have only one Brand
      */
-    public function model()
+    public function models()
     {
         return $this->hasMany(Model::class);
+    }
+
+    /**
+     * Relation->many to one (∞:1) with Car to Brand
+     * Car belongs to the Brand and Car can have only one Brand
+     */
+    public function cars()
+    {
+        return $this->hasMany(Car::class);
     }
 
 }
