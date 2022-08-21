@@ -44,7 +44,7 @@ class ModelsController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'name' => 'required',
+            Brand::FIELD_NAME => 'required',
             'description' => '',
             'brand' => 'required',
             'status' => 'required',

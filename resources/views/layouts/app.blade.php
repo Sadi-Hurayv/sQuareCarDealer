@@ -1,83 +1,81 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ config('app.name', '') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+  <!--_______________________________________________________________________ -->
+  <!-- Scripts -->
+  <script src="{{ asset('js/adminlte/jquery.min.js') }}" defer></script>
+  <script src="{{ asset('js/adminlte/bootstrap.bundle.min.js') }}" defer></script>
+  <script src="{{ asset('js/adminlte/adminlte.min.js') }}" defer></script>
+  <!-- <script src="{{ asset('js/adminlte/demo.js') }}" defer></script> -->
+  <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  <!-- Fonts -->
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <!-- <link href="{{ asset('fonts/adminlte/all.min.css') }}" rel="stylesheet"> -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" rel="stylesheet">
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <!-- Styles -->
+  <link href="{{ asset('css/adminlte/adminlte.min.css') }}" rel="stylesheet">
+  <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
+  <!--_______________________________________________________________________ -->
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+<body class="control-sidebar-slide-open sidebar-mini layout-fixed sidebar-collapse layout-navbar-fixed dark-mode">
+  <div class="wrapper">
 
-                    </ul>
+    <!-- Navbar -->
+    @include('layouts.navbar')
+    
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+    <!-- Main Sidebar Container -->
+    @include('layouts.sidebar')
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
 
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+      </div>
+      <!-- /.content-header -->
+
+      <!-- Main content -->
+      <div class="content">
         <main class="py-4">
-            @yield('content')
+          @yield('content')
         </main>
+      </div>
+      <!-- /.content -->
+
     </div>
+    <!-- /.content-wrapper -->
+
+
+
+    <!-- Control Sidebar -->
+    <!-- <aside class="control-sidebar control-sidebar-dark">
+       Control sidebar content goes here 
+    </aside> -->
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    @include('layouts.footer')
+    
+  </div>
+  <!-- ./wrapper -->
 </body>
+
 </html>

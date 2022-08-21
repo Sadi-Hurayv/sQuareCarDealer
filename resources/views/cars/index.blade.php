@@ -62,7 +62,7 @@
                                 <form id="delete-car-{{ $car->id }}" class="hidden " action="/cars/{{ $car->id }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <a class="link-dark p-1" href="javascript:void(0);" onclick="document.getElementById('delete-car-{{ $car->id }}').submit();"><i class="bi bi-trash p-1 border border-2 border-danger rounded" style="color: red;"></i></a>
+                                    <a class="link-dark p-1" href="javascript:void(0);" onclick="document.getElementById('delete-car-{{ $car->id }}').submit();"><i class="fa-regular fa-trash-can p-1 border border-2 border-danger rounded" style="color: red;"></i></a>
                                 </form>
 
                             </div>

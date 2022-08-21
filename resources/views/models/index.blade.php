@@ -5,13 +5,13 @@
 
     <div class="card">
 
-        <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="card-header d-flex justify-content-xl-between align-items-center">
             <div>
                 <h2 class="fw-bold">Model Management</h2>
                 <p>Here you can manage the models of car.</p>
             </div>
-            <div class="">
-                <a class="btn btn-primary link-dark p-1" href="/models/create"><i class="bi bi-patch-plus px-2" style="font-size: 2rem; color: white;"></i></a>
+            <div>
+                <a class="btn btn-primary link-dark p-1" href="/models/create"><i class="fa-regular fa-plus" style="font-size: 2rem;"></i></a>
             </div>
         </div>
 
@@ -47,14 +47,14 @@
                         <div class="col-2 d-flex justify-content-center align-items-center">
                             <div class="d-flex align-items-center">
 
-                                <a class="link-dark p-1" href="#"><i class="bi bi-eye p-1 border border-2 border-primary rounded" style="color: blue;"></i></a>
+                                <a class="link-dark p-1" href="#"><i class="fa-regular fa-eye p-1 border border-2 border-primary rounded" style="color: #4285F4;"></i></a>
 
-                                <a class="link-dark p-1" href="/models/{{$model->id}}/edit"><i class="bi bi-pencil p-1 border border-2 border-success rounded" style="color: green;"></i></a>
+                                <a class="link-dark p-1" href="/models/{{$model->id}}/edit"><i class="fa-regular fa-pen-to-square p-1 border border-2 border-success rounded" style="color: green;"></i></a>
 
                                 <form id="delete-model-{{ $model->id }}" class="hidden " action="/models/{{ $model->id }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <a class="link-dark p-1" href="javascript:void(0);" onclick="document.getElementById('delete-model-{{ $model->id }}').submit();"><i class="bi bi-trash p-1 border border-2 border-danger rounded" style="color: red;"></i></a>
+                                    <a class="link-dark p-1" href="javascript:void(0);" onclick="document.getElementById('delete-model-{{ $model->id }}').submit();"><i class="fa-regular fa-trash-can p-1 border border-2 border-danger rounded" style="color: red;"></i></a>
                                 </form>
 
                             </div>
